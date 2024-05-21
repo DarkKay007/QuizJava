@@ -1,0 +1,123 @@
+[
+    {
+      "id": 1,
+      "question": "¿Qué es JavaScript?",
+      "code": "",
+      "answers": [
+        "Un lenguaje de programación",
+        "Una biblioteca de JavaScript",
+        "Un framework de CSS",
+        "Un servidor web"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "id": 2,
+      "question": "¿Cómo se declara una variable en JavaScript?",
+      "code": "const variable = 'valor';",
+      "answers": [
+        "const",
+        "let",
+        "var",
+        "Todas las anteriores"
+      ],
+      "correctAnswer": 3
+    },
+    {
+      "id": 3,
+      "question": "¿Cuál de las siguientes es una estructura de control de flujo?",
+      "code": "if (condición) { /* código */ }",
+      "answers": [
+        "for",
+        "while",
+        "if",
+        "switch"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "id": 4,
+      "question": "¿Cómo se define una función en JavaScript?",
+      "code": "function miFuncion() { /* código */ }",
+      "answers": [
+        "function",
+        "def",
+        "lambda",
+        "fun"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "id": 5,
+      "question": "¿Qué método se utiliza para añadir un elemento al final de un array?",
+      "code": "array.push(elemento);",
+      "answers": [
+        "push()",
+        "pop()",
+        "shift()",
+        "unshift()"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "id": 6,
+      "question": "¿Qué operador se usa para la asignación?",
+      "code": "let x = 10;",
+      "answers": [
+        "=",
+        "==",
+        "===",
+        ":="
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "id": 7,
+      "question": "¿Cómo se convierte una cadena en un número entero?",
+      "code": "parseInt('123');",
+      "answers": [
+        "parseInt()",
+        "parseFloat()",
+        "Number()",
+        "int()"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "id": 8,
+      "question": "¿Qué método se utiliza para unir todos los elementos de un array en una cadena?",
+      "code": "array.join(',');",
+      "answers": [
+        "join()",
+        "concat()",
+        "push()",
+        "splice()"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "id": 9,
+      "question": "¿Qué palabra clave se utiliza para crear un objeto?",
+      "code": "let obj = { clave: 'valor' };",
+      "answers": [
+        "new",
+        "class",
+        "object",
+        "None of the above"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "id": 10,
+      "question": "¿Cuál es el resultado de 2 + '2' en JavaScript?",
+      "code": "2 + '2';",
+      "answers": [
+        "'22'",
+        "4",
+        "NaN",
+        "Error"
+      ],
+      "correctAnswer": 0
+    }
+  ]
+  
