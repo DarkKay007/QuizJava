@@ -72,25 +72,7 @@
     "answers": ["['a', 'b']", "[1, 2]", "['a', 'b', 'a', 'b']", "['1', '2']"],
     "correctAnswer": 0
   },
-  {
-    "id": 10,
-    "question": "¿Qué significa el operador ... (spread)?",
-    "code": "const array1 = [1, 2];\nconst array2 = [...array1, 3, 4];\nconsole.log(array2);",
-    "answers": [
-      "Extiende los elementos de un array",
-      "Copia los elementos de un array",
-      "Comprime los elementos de un array",
-      "Ninguna de las anteriores"
-    ],
-    "correctAnswer": 0
-  },
-  {
-    "id": 9,
-    "question": "¿Qué palabra clave se utiliza para crear un objeto?",
-    "code": "let obj = { clave: 'valor' };",
-    "answers": ["new", "class", "object", "None of the above"],
-    "correctAnswer": 0
-  },
+  
   {
     "id": 10,
     "question": "¿Cuál es el resultado de 2 + '2' en JavaScript?",
