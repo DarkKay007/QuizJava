@@ -3,15 +3,13 @@ import { Container, Stack, Typography } from '@mui/material';
 import { JavaScriptLogo } from './assets/JavaScriptLogo';
 import { Start } from './Start';
 import { useQuestionStore } from './store/questions';
-import QuizCard from './Game';
+import {Game} from './Game';
 import "./App.css"
 const App: React.FC = () => {
   const questions = useQuestionStore(state => state.questions);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  
 
-  const handleReload = () => {
-    setCurrentQuestionIndex((prevIndex) => (prevIndex + 1) % questions.length);
-  };
+
 
   return (
     <main>
@@ -25,10 +23,7 @@ const App: React.FC = () => {
 
         {questions.length === 0 && <Start />}
         {questions.length > 0 && (
-          <QuizCard 
-            info={questions[currentQuestionIndex]} 
-            onReload={handleReload} 
-          />
+          <Game />
         )}
       </Container>
     </main>

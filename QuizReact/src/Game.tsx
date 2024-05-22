@@ -1,71 +1,65 @@
-import React, { useState } from 'react';
-import { Card, Typography, Button } from '@mui/material';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { gradientDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { gradientDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import {
+  Card,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Typography,
+} from "@mui/material";
+import { useQuestionStore } from "./store/questions";
+import { type Question as QuestionsType } from "./types";
 
-interface QuizCardProps {
-  info: {
-    question: string;
-    code: string;
-    answers: string[];
-    correctAnswer: number;
+const Question = ({ info }: { info: QuestionsType }) => {
+  const selectAnswer = useQuestionStore((state) => state.selectAnswer);
+  const createHandleClick = (answerIndex: number) => () => {
+    selectAnswer(info.id, answerIndex);
   };
-  onReload: () => void;
-}
+  const getBackgroundColor = (index:number) => {
+    const { userSelectedAnswer, correctAnswer} = info
 
-const QuizCard: React.FC<QuizCardProps> = ({ info, onReload }) => {
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [showReloadButton, setShowReloadButton] = useState(false);
+    if (userSelectedAnswer == null) return 'transparent'
 
-  const handleAnswerClick = (index: number) => {
-    setSelectedAnswer(index);
-    if (index === info.correctAnswer) {
-      // Si la respuesta es correcta, mostrar el botón de recarga
-      setShowReloadButton(true);
-    } else {
-      // Si la respuesta es incorrecta, cambiar el estilo del botón por un momento
-      setTimeout(() => setSelectedAnswer(null), 1000);
-    }
-  };
+    if (index != correctAnswer && index != userSelectedAnswer) return 'transparent'
 
-  const handleReloadClick = () => {
-    setShowReloadButton(false);
-    setSelectedAnswer(null);
-    onReload();
-  };
+    if (index == correctAnswer) return 'green'
 
+    if (index == userSelectedAnswer) return 'red'
+
+    
+    return 'yellow'
+  }
   return (
-    <Card variant="outlined" sx={{ bgcolor: '#222', p: 2, textAlign: 'left' }}>
-      <Typography variant="h5">
-        {info.question}
-      </Typography>
-      <SyntaxHighlighter language='javascript' style={gradientDark}>
+    <Card variant="outlined" sx={{ textAlign: "left", p: 5 }}>
+      <Typography variant="h5">{info.question}</Typography>
+      <SyntaxHighlighter language="javascript" style={gradientDark}>
         {info.code}
       </SyntaxHighlighter>
-      <Typography variant="h5">
+      <List sx={{ bgcolor: "#333" }} disablePadding>
         {info.answers.map((answer, index) => (
-          <Button
+          <ListItem
             key={index}
-            onClick={() => handleAnswerClick(index)}
-            disabled={selectedAnswer !== null}
-            sx={{
-              bgcolor: selectedAnswer === index ? (index === info.correctAnswer ? 'green' : 'red') : undefined,
-              '&:hover': {
-                bgcolor: selectedAnswer === null ? '#333' : undefined,
-              }
-            }}
+            sx={{ bgcolor: "#333", color: "#fff" }}
+            disablePadding
           >
-            {answer}
-          </Button>
+            <ListItemButton disabled={info.userSelectedAnswer != null}  sx={{ backgroundColor: getBackgroundColor(index)}}
+            onClick={createHandleClick(index)}>
+              <ListItemText primary={answer} sx={{ textAlign: "center" }} />
+            </ListItemButton>
+          </ListItem>
         ))}
-      </Typography>
-      {showReloadButton && (
-        <Button onClick={handleReloadClick}>
-          Reload Game
-        </Button>
-      )}
+      </List>
     </Card>
   );
-}
+};
+export const Game = () => {
+  const questions = useQuestionStore((state) => state.questions);
+  const currentQuestion = useQuestionStore((state) => state.currentQuestion);
 
-export default QuizCard;
+
+  const questionInfo = questions[currentQuestion];
+  return (<>
+  <Question info={questionInfo}></Question>
+  </>);
+};
